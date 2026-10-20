@@ -5,9 +5,9 @@ dist-ssr
 .env.local
 .env.*.local
 
-# 自动生成的类型声明文件
-src/auto-imports.d.ts
-src/components.d.ts
+# 自动生成的类型声明文件（保留提交以保证 CI 类型检查一致）
+# src/auto-imports.d.ts
+# src/components.d.ts
 
 # IDE
 .vscode/*
