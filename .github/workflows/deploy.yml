@@ -25,11 +25,11 @@ jobs:
       - name: 检出代码
         uses: actions/checkout@v4
 
-      # 必须显式指定 Node 20.x：默认版本可能导致 npm install 内存不足失败
-      - name: 安装 Node 20
+      # 与本地开发环境 Node 24 对齐（本地 Node 24 干净环境构建已验证通过）
+      - name: 安装 Node 24
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
 
       - name: 配置 npm 使用官方 registry（lock 中 npmmirror 在美国服务器拉取不稳定）
