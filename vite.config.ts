@@ -48,7 +48,9 @@ export default defineConfig(({ mode }) => {
       preprocessorOptions: {
         scss: {
           // 全局注入设计 token，所有 .scss / .vue 可直接使用 var(--color-primary)
-          additionalData: `@use "@/assets/styles/variables.scss" as *;`
+          additionalData: `@use "@/assets/styles/variables.scss" as *;`,
+          // 抑制 dart-sass legacy-js-api 弃用警告刷屏（每个文件一条，会撑爆 CI 日志）
+          silenceDeprecations: ['legacy-js-api']
         }
       }
     },

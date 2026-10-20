@@ -42,11 +42,14 @@ jobs:
       - name: 安装依赖
         run: npm ci
 
-      - name: 构建生产包（vite.config.ts 中 base=/star-ticket/ 仅在 production 生效）
-        run: npm run build
+      - name: 类型检查（独立步骤，错误直接显示在日志/Annotations）
+        run: npx vue-tsc --noEmit
         env:
-          # vue-tsc 类型检查吃内存，防止 CI 环境 OOM
           NODE_OPTIONS: --max-old-space-size=4096
+
+      - name: 构建生产包（vite.config.ts 中 base=/star-ticket/ 仅在 production 生效）
+        # --logLevel warn 抑制 transforming 刷屏输出，防止 GitHub 截断日志
+        run: npx vite build --logLevel warn
 
       - name: 配置 Pages
         uses: actions/configure-pages@v5
