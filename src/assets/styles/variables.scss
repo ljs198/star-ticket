@@ -1,0 +1,102 @@
+/**
+ * 设计 Token：assets/styles/variables.scss
+ *
+ * 知识点：
+ * 1. CSS 变量（Custom Properties）：以 -- 开头，可在 JS/CSS 中通过 var() 引用
+ * 2. SCSS 变量（$var）与 CSS 变量（--var）的区别：前者编译期、后者运行时可动态修改
+ * 3. 本工程统一使用 CSS 变量，便于未来切主题（如夜间模式）
+ * 4. 颜色按座位状态语义命名，业务代码无需硬编码色值
+ * 5. 暗色主题通过 [data-widget-theme="dark"] 覆盖（本工程以浅色为主）
+ */
+
+/* SCSS 变量供编译期使用（如 mixin 计算） */
+$bp-desktop: 1200px;
+$bp-tablet: 768px;
+$bp-mobile: 480px;
+
+/* CSS 变量供运行时使用 */
+:root {
+  /* 品牌色（国庆主题：中国红 + 帝王金） */
+  --color-primary: #C8102E;
+  --color-primary-light: #E63946;
+  --color-primary-dark: #A10D23;
+  /* 国庆金 */
+  --color-gold: #D4AF37;
+  --color-gold-light: #F0C75E;
+  --color-gold-dark: #B8860B;
+
+  /* 座位状态色（语义化） */
+  --color-seat-available: #1DC981;      /* 可售 - 绿 */
+  --color-seat-locked-me: #4B3FE3;      /* 我锁的 - 品牌紫 */
+  --color-seat-locked-other: #9CA3AF;   /* 他人锁定 - 灰 */
+  --color-seat-sold: #E8463A;           /* 已售 - 红 */
+  --color-seat-disabled: #374151;       /* 禁用 - 深灰 */
+
+  /* 功能色 */
+  --color-success: #1DC981;
+  --color-warning: #EFAA17;
+  --color-danger: #E8463A;
+  --color-info: #22A5F7;
+
+  /* 中性色 */
+  --color-text: #171717;
+  --color-text-secondary: #52525B;
+  --color-text-placeholder: #A1A1AA;
+  --color-border: rgba(23, 23, 23, 0.12);
+  --color-bg: #F7F7F8;
+  --color-bg-muted: #EFEFF2;
+
+  /* 尺寸 */
+  --radius: 8px;
+  --radius-card: 12px;
+  --radius-full: 999px;
+  --header-height: 60px;
+  --bottom-bar-height: 64px;
+
+  /* 阴影 */
+  --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.08);
+  --shadow-bottom-bar: 0 -2px 12px rgba(0, 0, 0, 0.08);
+
+  /* 移动端断点（JS 与 SCSS 共用，但 SCSS 中需用 $bp-* 变量） */
+  --bp-desktop: #{$bp-desktop};
+  --bp-tablet: #{$bp-tablet};
+  --bp-mobile: #{$bp-mobile};
+
+  /* Element Plus 主题覆盖 */
+  --el-color-primary: #{$bp-desktop * 0 + 0}; /* 占位，下方用具体值 */
+}
+
+/* 覆盖 Element Plus 主色为品牌色（国庆红） */
+:root {
+  --el-color-primary: #C8102E;
+  --el-color-primary-light-3: #E63946;
+  --el-color-primary-light-5: #EE6C72;
+  --el-color-primary-light-7: #F5A3A7;
+  --el-color-primary-light-8: #F8C0C3;
+  --el-color-primary-light-9: #FCE4E6;
+  --el-color-primary-dark-2: #A10D23;
+}
+
+/* ========== 移动端适配 token（≤768px 生效） ========== */
+@media (max-width: $bp-tablet) {
+  :root {
+    --header-height: 48px;
+    --bottom-bar-height: 56px;
+    --radius-card: 10px;
+    /* 触控热区：所有可点击元素最小 44px */
+    --touch-min: 44px;
+    /* 移动端间距阶梯 */
+    --gap-xs: 4px;
+    --gap-sm: 8px;
+    --gap-md: 12px;
+    --gap-lg: 16px;
+    /* 移动端字号阶梯 */
+    --fs-xs: 11px;
+    --fs-sm: 12px;
+    --fs-base: 14px;
+    --fs-md: 15px;
+    --fs-lg: 16px;
+    --fs-xl: 18px;
+    --fs-2xl: 20px;
+  }
+}
