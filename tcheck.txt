@@ -1,5 +1,0 @@
-﻿src/shims-vue.d.ts(7,44): error TS1109: Expression expected.
-src/shims-vue.d.ts(7,45): error TS1109: Expression expected.
-src/shims-vue.d.ts(7,50): error TS1127: Invalid character.
-src/shims-vue.d.ts(8,2): error TS1109: Expression expected.
-src/shims-vue.d.ts(8,3): error TS1161: Unterminated regular expression literal.
