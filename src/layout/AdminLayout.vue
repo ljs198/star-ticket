@@ -30,6 +30,11 @@ async function handleLogout() {
   await userStore.logout()
   router.push('/login')
 }
+
+/** el-dropdown command 回调：显式标注参数类型，避免 vue-tsc 严格模式报隐式 any */
+function handleCommand(cmd: string | number | object) {
+  if (cmd === 'logout') handleLogout()
+}
 </script>
 
 <template>
@@ -63,7 +68,7 @@ async function handleLogout() {
         </el-button>
         <div class="header-right">
           <router-link to="/events" class="back-portal">返回前台</router-link>
-          <el-dropdown trigger="click" @command="(cmd) => cmd === 'logout' && handleLogout()">
+          <el-dropdown trigger="click" @command="handleCommand">
             <span class="nickname">{{ nickname }}</span>
             <template #dropdown>
               <el-dropdown-menu>
