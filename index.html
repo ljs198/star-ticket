@@ -7,6 +7,25 @@
     <meta name="theme-color" content="#C8102E" />
     <title>星幕票务交易平台</title>
     <meta name="description" content="星幕票务 - 演出票务在线选座下单交易平台" />
+    <!--
+      SPA 刷新 404 恢复：与 public/404.html 配套
+      检测 404.html 重定向来的 /?/xxx 形式 URL，用 history.replaceState
+      还原为原始子路径（须在 Vue 初始化前执行，vue-router 才能匹配到正确路由）
+    -->
+    <script>
+      ;(function (l) {
+        if (l.search[1] === '/') {
+          var decoded = l.search
+            .slice(1)
+            .split('&')
+            .map(function (s) {
+              return s.replace(/~and~/g, '&')
+            })
+            .join('?')
+          window.history.replaceState(null, '', l.pathname.slice(0, -1) + decoded + l.hash)
+        }
+      })(window.location)
+    </script>
   </head>
   <body>
     <div id="app"></div>
